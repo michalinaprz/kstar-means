@@ -5,10 +5,11 @@ from sklearn.datasets import make_blobs
 
 def run_test():
     #4 klastry
-    X, y_true = make_blobs(n_samples=500, centers=4, cluster_std=0.60, random_state=0)
+    centers = [[-10, -10], [10, 10], [10, -10], [-10, 10], [0,0]]
+    X, y_true = make_blobs(n_samples=500, centers=centers, cluster_std=0.40, random_state=0)
 
     print("Uruchamiam K*-means...")
-    centroids, clusters = kstar_means(X)
+    centroids, clusters = kstar_means(X, patience=15)
 
     print(f"Liczba wykrytych klastrów: {len(centroids)}")
     print(f"Centroidy: \n{np.array(centroids)}")
